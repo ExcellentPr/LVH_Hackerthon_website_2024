@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+	.btn1{
+        margin-top:30px;
+		margin-left:20px;
+	}
+	
+	
+	
+	form{
+        margin-top:60px;
+    }
+	
+	</style>
+	<script>
+	function goBack(){
+		window.location.href = "dashboard.html";
+	}
+    function validatePost()
+        {
+            var p =  document.getElementById('progressBar').textContent;  
+
+           
+
+
+            if(p.localeCompare("upload:100%...")==0){
+                swal({
+    title:"Event Posted!!",
+    text:"congrats.",
+    icon :"success",
+    button:true,
+    dangerMode: true,
+    }).then((isOkay)=> {
+    if(isOkay)
+    {
+                    
+        window.location.replace("dashboard.html");
+
+    }
+    });
+
+    return false;
+
+            }else{
+                swal({
+    title:"Uploading has not been done yet!!",
+    text:"Please upload a picture.",
+    icon :"error",
+    button:true,
+    dangerMode: true,
+    }).then((isOkay)=> {
+    if(isOkay)
+    {
+
+    }
+    });
+
+    return false;
+
+            }
+        }
+	</script>
+	
+
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="uploadscript.js"></script>
+
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Sidebar Toggle-->
+           
+           <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="dashboard.html">LVH Admin</a>
+		   <!-- Navbar Search-->
+            
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+      
+           
+           
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4"></h1>
+                        <ol class="breadcrumb mb-4">
+                            
+                        </ol>
+						
+						
+						<form   action="" method="post" autocomplete="off" enctype="multipart/form-data">
+   <div class="form-group">
+      <label for="title" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-10">
+      <input class="form-control"  type="text" name="title" id="title" required value="">
+        <span class="ageText" id="ageText" name="ageText"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="title" class="col-sm-2 col-form-label">Image</label>
+      <div class="col-sm-10">
+      <input  class="form-control"   type="file" name="image" id="image" accept=".jpg, .jpeg, .png"  width="50%">
+      
+ 
+        
+    </div>
+    <div class="form-group">
+        <label for="title" class="col-sm-2 col-form-label">Post Date</label>
+        <div class="col-sm-10">
+        <input  class="form-control"   type="date" name="postDate" id="postDate"  width="50%"> 
+      </div>
+      <div class="form-group">
+        <label for="title" class="col-sm-2 col-form-label">Expiry Date</label>
+        <div class="col-sm-10">
+        <input  class="form-control"   type="date" name="expiryDate" id="expiryDate"   width="50%">
+        <button class="form-control"  type="button" name="submit" id="upload" class="btn1" >Upload</button>
+    </div>
+   
+	<p id="progressBar"></p>
+
+<div class="form-group">
+
+
+<button type="button" name="post" id="post" class="btn1" onclick="validatePost();">Post</button>
+<button type="button" name="back" class="btn1" onclick="goBack();">Back</button>
+</div>
+
+
+</form>
+<br>
+						
+						   </div>
+                 
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Limpopo Varsity Hackathon 2022</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+
+
+
+        
+
+        <script  type="module">
+var ImgName,ImgUrl,fileExtenstion;
+var files = [];
+var reader;
+
+
+            // Import the functions you need from the SDKs you need
+           import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyAmfC2pEUrToIahPxEwHUcf5w35digazzs",
+              authDomain: "limphack-f98fd.firebaseapp.com",
+              databaseURL: "https://limphack-f98fd-default-rtdb.firebaseio.com",
+              projectId: "limphack-f98fd",
+              storageBucket: "limphack-f98fd.appspot.com",
+              messagingSenderId: "291693080426",
+              appId: "1:291693080426:web:be8c448ed33b6211bf7f13"
+            };
+          
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+             //const auth =  app.auth();
+             
+
+             const db = firebase.database();
+             //-------------------selection process-------------------
+var input = document.getElementById("image");
+
+
+
+input.onchange =function(e) {
+    files = e.target.files;
+   
+reader = new FileReader();
+
+reader.readAsDataURL(files[0]);
+fileExtenstion = files[0].name.split(".");
+
+}
+
+
+//--------------------------upload process----------------------------------
+       document.getElementById('upload').onclick = function(){
+     
+            ImgName=document.getElementById("title").value;
+            var postDate = document.getElementById("postDate").value;
+           var expiryDate = document.getElementById("expiryDate").value;
+
+            console.log(postDate,"and ",expiryDate);
+
+            if(postDate==""||expiryDate==""){
+
+                swal({
+  title: "YOU ARE UPLOADING AN EVENT WITHOUT EXPIRY/POST DATE ",
+  text: "Event might not show if posted without the two",
+  icon: "warning",
+  button: true,
+  dangerMode: true,
+})
+
+            }else{
+
+
+
+            var uploadTask = firebase.storage().ref('Images/'+ImgName+"."+fileExtenstion[1]).put(files[0]);
+            uploadTask.on('state_changed',function(snapshot){
+
+                var  progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+           
+                
+                
+               var p =  document.getElementById('progressBar');
+               p.innerHTML = "upload:"+progress+"%...";
+               p.style.color = "green";
+
+            },
+            
+            //---------------------------------upload to storage-------------------------
+            function(error){
+                alert('error while saving image'+ error)
+            },
+        function(){
+
+
+            uploadTask.snapshot.ref.getDownloadURL().then(function(url){
+                console.log(url);
+                db.ref("Events").child(ImgName).set({
+                Name: ImgName,
+                Link: url,
+                datePosted: postDate,
+                expiryDate: expiryDate
+
+            });
+            });
+            let timerInterval
+
+            
+}
+
+            );
+            
+
+}
+            
+        }
+
+
+
+
+
+        </script>
+
+    </body>
+</html>

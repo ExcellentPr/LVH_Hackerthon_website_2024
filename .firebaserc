@@ -1,0 +1,25 @@
+{
+  "projects": {
+    "default": "limphack-f98fd"
+  },
+  "targets": {
+    "admin-lvh": {
+      "hosting": {
+        "staging": [
+          "admin-lvh"
+        ],
+        "prod": [
+          "limphack-f98fd"
+        ]
+      }
+    },
+    "limphack-f98fd": {
+      "hosting": {
+        "prod": [
+          "admin-lvh"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

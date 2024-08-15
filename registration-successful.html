@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event posted</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+    <body onload="return check(); " > 
+	
+	
+
+    <script>    
+    function check(){
+    swal({
+    title:"Event Posted!!",
+    text:"congrats.",
+    icon :"success",
+    button:true,
+    dangerMode: true,
+    }).then((isOkay)=> {
+    if(isOkay)
+    {
+                    
+        window.location.replace("dashboard.html");
+
+    }
+    });
+
+    return false;
+
+    }
+
+    </script>
+
+    
+ 
+</body>
+</html>
